@@ -1,0 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f0;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NAV */
+nav {
+    background-color: #2e7d32;
+    padding: 14px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+nav .brand {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+nav ul li a:hover {
+    background-color: #1b5e20;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* CARDS */
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    margin-bottom: 16px;
+    color: #2e7d32;
+    font-size: 20px;
+}
+
+/* STAT BOXES */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-box {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 5px solid #2e7d32;
+}
+
+.stat-box h3 {
+    font-size: 28px;
+    color: #2e7d32;
+    margin-bottom: 6px;
+}
+
+.stat-box p {
+    font-size: 13px;
+    color: #777;
+}
+
+/* FORMS */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2e7d32;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-green {
+    background-color: #2e7d32;
+    color: white;
+}
+
+.btn-green:hover {
+    background-color: #1b5e20;
+}
+
+.btn-red {
+    background-color: #c62828;
+    color: white;
+}
+
+.btn-red:hover {
+    background-color: #b71c1c;
+}
+
+.btn-blue {
+    background-color: #1565c0;
+    color: white;
+}
+
+.btn-blue:hover {
+    background-color: #0d47a1;
+}
+
+.btn-orange {
+    background-color: #e65100;
+    color: white;
+}
+
+.btn-orange:hover {
+    background-color: #bf360c;
+}
+
+/* TABLES */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+table thead {
+    background-color: #e8f5e9;
+}
+
+table th, table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* ALERTS */
+.alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.alert-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #2e7d32;
+}
+
+.alert-error {
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #c62828;
+}
+
+/* LOGIN PAGE */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-box h1 {
+    text-align: center;
+    color: #2e7d32;
+    margin-bottom: 8px;
+    font-size: 26px;
+}
+
+.login-box p.subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 28px;
+}
+
+/* STATUS BADGES */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-green  { background: #e8f5e9; color: #2e7d32; }
+.badge-orange { background: #fff3e0; color: #e65100; }
+.badge-blue   { background: #e3f2fd; color: #1565c0; }
+.badge-red    { background: #ffebee; color: #c62828; }
+.badge-gray   { background: #f5f5f5; color: #666; }
