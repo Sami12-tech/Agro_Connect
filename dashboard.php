@@ -104,3 +104,98 @@ $recent_sales = $stmt->fetchAll();
 </div>
 </body>
 </html>
+
+
+<?php
+session_start();
+require_once '../config/db.php';
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'farmer') {
+    header("Location: ../index.php"); exit();
+}
+
+$error = ''; $success = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name     = trim($_POST['name']);
+    $category = trim($_POST['category']);
+    $price    = $_POST['price_per_unit'];
+    $unit     = $_POST['unit'];
+    $quantity = $_POST['quantity'];
+    $desc     = trim($_POST['description']);
+
+    if (empty($name) || empty($price) || empty($quantity)) {
+        $error = "Please fill in all required fields.";
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO products (farmer_id, name, category, price_per_unit, unit, quantity_available, description) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$_SESSION['user_id'], $name, $category, $price, $unit, $quantity, $desc]);
+        $success = "Product added successfully!";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product — AgroConnect</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav>
+    <span class="brand">🌾 AgroConnect</span>
+    <ul>
+        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="add_product.php">Add Product</a></li>
+        <li><a href="my_products.php">My Products</a></li>
+        <li><a href="hire_transport.php">Hire Transport</a></li>
+        <li><a href="../auth/logout.php">Logout</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <div class="card" style="max-width:600px; margin:auto;">
+        <h2>Add New Product</h2>
+        <?php if ($error): ?><div class="alert alert-error"><?= $error ?></div><?php endif; ?>
+        <?php if ($success): ?><div class="alert alert-success"><?= $success ?></div><?php endif; ?>
+        <form method="POST">
+            <div class="form-group">
+                <label>Product Name *</label>
+                <input type="text" name="name" required placeholder="e.g. Rice, Wheat, Tomato">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select name="category">
+                    <option value="Grain">Grain</option>
+                    <option value="Vegetable">Vegetable</option>
+                    <option value="Fruit">Fruit</option>
+                    <option value="Spice">Spice</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Price per Unit (৳) *</label>
+                <input type="number" name="price_per_unit" step="0.01" required placeholder="e.g. 50.00">
+            </div>
+            <div class="form-group">
+                <label>Unit</label>
+                <select name="unit">
+                    <option value="kg">kg</option>
+                    <option value="ton">ton</option>
+                    <option value="piece">piece</option>
+                    <option value="dozen">dozen</option>
+                    <option value="litre">litre</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Quantity Available *</label>
+                <input type="number" name="quantity" step="0.01" required placeholder="e.g. 100">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" rows="3" placeholder="Optional product details"></textarea>
+            </div>
+            <button type="submit" class="btn btn-green">Add Product</button>
+            <a href="my_products.php" class="btn btn-blue" style="margin-left:10px;">View My Products</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>
